@@ -12,7 +12,7 @@ import (
 
 // Tree represents a flat directory listing.
 type Tree struct {
-	ID   sha1
+	ID   Sha1
 	repo *Repository
 
 	// parent tree
@@ -22,7 +22,7 @@ type Tree struct {
 	entriesParsed bool
 }
 
-func NewTree(repo *Repository, id sha1) *Tree {
+func NewTree(repo *Repository, id Sha1) *Tree {
 	return &Tree{
 		ID:   id,
 		repo: repo,
@@ -88,7 +88,7 @@ func parseTreeData(tree *Tree, data []byte) ([]*TreeEntry, error) {
 			return nil, err
 		}
 		entry.ID = id
-		pos += step + 1 // Skip half of sha1.
+		pos += step + 1 // Skip half of Sha1.
 
 		step = bytes.IndexByte(data[pos:], '\n')
 

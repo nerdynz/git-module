@@ -20,12 +20,12 @@ import (
 // Commit represents a git commit.
 type Commit struct {
 	Tree
-	ID            sha1 // The ID of this commit object
+	ID            Sha1 // The ID of this commit object
 	Author        *Signature
 	Committer     *Signature
 	CommitMessage string
 
-	parents        []sha1 // SHA1 strings
+	parents        []Sha1 // SHA1 strings
 	submoduleCache *objectCache
 }
 
@@ -41,9 +41,9 @@ func (c *Commit) Summary() string {
 
 // ParentID returns oid of n-th parent (0-based index).
 // It returns nil if no such parent exists.
-func (c *Commit) ParentID(n int) (sha1, error) {
+func (c *Commit) ParentID(n int) (Sha1, error) {
 	if n >= len(c.parents) {
-		return sha1{}, ErrNotExist{"", ""}
+		return Sha1{}, ErrNotExist{"", ""}
 	}
 	return c.parents[n], nil
 }

@@ -27,7 +27,7 @@ func (repo *Repository) CreateTag(name, revision string) error {
 	return err
 }
 
-func (repo *Repository) getTag(id sha1) (*Tag, error) {
+func (repo *Repository) getTag(id Sha1) (*Tag, error) {
 	t, ok := repo.tagCache.Get(id.String())
 	if ok {
 		log("Hit cache: %s", id)
